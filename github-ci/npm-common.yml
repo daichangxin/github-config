@@ -40,12 +40,6 @@ jobs:
         steps:
             - run: |
                   npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-                  npm config list
-                  npm ci
-                  npm run build
-                  if [[ "$NPM_SCOPE" != "" ]]; then
-                      npm config set scope "$NPM_SCOPE"
-                  fi
                   SPACE_CHAR=" "
                   npx standard-version --releaseCommitMessageFormat "chore(release):${SPACE_CHAR}{{currentTag}} [skip ci]"
                   git push --follow-tags origin $CI_COMMIT_REF_NAME
